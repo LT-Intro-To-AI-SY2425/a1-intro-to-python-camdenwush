@@ -11,7 +11,7 @@ a function. They should be removed and replaced with your solution.
 This portion of the assignment will not be graded, but this gives you some problems to 
 check, if you do not complete the generative AI portion of the assignment.
 """
-
+import math
 from typing import List, TypeVar
 
 
@@ -25,8 +25,7 @@ def absolute(n: int) -> int:
     Returns:
         the absolute value of the passed in number
     """
-    raise NotImplementedError("absolute")
-
+    return n if n >= 0 else -n
 
 def factorial(n: int) -> int:
     """Takes a number n, and computes the factorial n! You can assume the passed in
@@ -38,7 +37,7 @@ def factorial(n: int) -> int:
     Returns:
         factorial of the passed in number
     """
-    raise NotImplementedError("factorial")
+    return math.factorial(n)
 
 
 T = TypeVar("T")
@@ -55,7 +54,7 @@ def every_other(lst: List[T]) -> List[T]:
     Returns:
         a list of every of other item in the original list starting with the first
     """
-    raise NotImplementedError("every_other")
+    return lst[::2]
 
 
 def sum_list(lst: List[int]) -> int:
@@ -68,8 +67,7 @@ def sum_list(lst: List[int]) -> int:
     Returns:
         the sum of the passed in list
     """
-    raise NotImplementedError("sum_list")
-
+    return lst[0] if len(lst) == 1 else lst[0] + sum_list(lst[1:])
 
 def mean(lst: List[int]) -> float:
     """Takes a list of numbers, and returns the mean of the numbers.
@@ -80,8 +78,7 @@ def mean(lst: List[int]) -> float:
     Returns:
         the mean of the passed in list
     """
-    raise NotImplementedError("mean")
-
+    return sum_list(lst) / len(lst)
 
 def median(lst: List[int]) -> float:
     """Takes an ordered list of numbers, and returns the median of the numbers.
@@ -95,8 +92,7 @@ def median(lst: List[int]) -> float:
     Returns:
         the median of the passed in list
     """
-    raise NotImplementedError("median")
-
+    return (lambda s: (s[len(s)//2] if len(s) % 2 == 1 else (s[len(s)//2 - 1] + s[len(s)//2]) / 2))(sorted(lst))
 
 def duck_duck_goose(lst: List[str]) -> List[str]:
     """Given an list of names (strings), play 'duck duck goose' with it, knocking out
@@ -117,8 +113,11 @@ def duck_duck_goose(lst: List[str]) -> List[str]:
     Returns:
         the resulting list after playing duck duck goose
     """
-    raise NotImplementedError("duck_duck_goose")
-
+    idx = 0
+    while len(lst) > 2:
+        idx = (idx + 2) % len(lst) 
+        lst.pop(idx)
+    return lst
 
 # this line causes the nested code to be skipped if the file is imported instead of run
 if __name__ == "__main__":
